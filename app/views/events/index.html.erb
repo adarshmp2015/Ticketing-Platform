@@ -1,0 +1,6 @@
+<% @events.each do |event| %>
+<div class="event_wrapper">
+	<h2 class="title"><%= link_to event.title, event %></h2>
+	<p class="date"><%= event.created_at.strftime("%B, %d, %Y") %></p>
+</div>
+<% end %>
