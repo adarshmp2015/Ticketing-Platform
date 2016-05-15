@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Register</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -21,17 +21,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div><%= f.label :name %><br />
+  
+   <div><%= f.label :name %><br />
         <%= f.text_field :name %></div>
 
-
-   <div> <%= f.radio_button :gender, '1' %> <%= f.label :gender, "Female" %></div>
-    <div> <%= f.radio_button :gender, '0' %> <%= f.label :gender, "Male" %> </div>
-
+        <div><%= f.radio_button :gender, 'female' %> <%= f.label :gender, "Female" %> </div>
+    <div><%= f.radio_button :gender, 'male' %> <%= f.label :gender, "Male" %> </div>
 
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Register" %>
   </div>
 <% end %>
 

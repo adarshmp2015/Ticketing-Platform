@@ -1,0 +1,19 @@
+<%= form_for([@event, @event.tickets.build]) do |f| %>
+<% @t = User.find(current_user) -%>
+<p>
+	<%= f.hidden_field :participant, :value => @t.name%>
+</p>
+<p>
+	<%= f.hidden_field :gender, :value => @t.gender%>
+</p>
+<p>
+	<%= f.hidden_field :user, :value => @t.id %>
+</p>
+<p>
+	<%= f.hidden_field :fee, :value => $count %>
+</p>
+<br>
+<p>
+	<%= f.submit "Attend" %>
+</p>
+<% end %>

@@ -1,11 +1,83 @@
+<% if user_signed_in? %>
+	<% @t = User.find(current_user) -%>
+	<ul class="nav pull-right">
+		<% if(@t.gender == "female") %>
+			<h1 class="ticket_charge">
+				Rs. <%= number_with_precision($count, :precision => 2)%><br>					
+		 	</h1>
+		 	5% discounted 
+	 	<% else %>
+	   		<h1 class="ticket_charge">
+	   			<% $count = @event.ticket_charge %>
+				Rs. <%= number_with_precision($count , :precision => 2)%>
+			</h1>
+	   	<% end %>
+	</ul>
+<% else %>
+	<ul class="nav pull-right">
+		<h1 class="ticket_charge">
+			<% $count = @event.ticket_charge %>
+			Rs. <%= number_with_precision($count, :precision => 2)%><br>			
+		</h1>
+		5% discount in ticket price for women
+	</ul>
+
+<% end %>
+	
+
+
 <h1 class="title">
-	<%= @event.title %>
-</h1>
+	<%= @event.title %> 
+ </h1>
+ 
 
 <p class="date">
 	Submitted <%= time_ago_in_words(@event.created_at) %> Ago
 </p>
 
+<h4 class="conducted_on">
+ 	on <%= @event.conducted_on %> 
+ 	<% if @event.no_of_days == 1 %>
+ 	 ( <%= @event.no_of_days %> day ) 
+ 	 <% else %>
+ 	  ( <%= @event.no_of_days %> days ) 
+ 	   <% end %>
+ </h4>
+
+<ul class="nav pull-right">
+	<h4 class="tickets">
+	<%= $tickets %> Tickets left
+ </h4>
+</ul><br>
+
+ <p class="event_sub">
+ 	sub: <%= @event.event_sub %>
+ </p>
+
+
 <p class="details">
 	<%= @event.details %>
 </p>
+<hr>
+
+
+
+<div id="tickets">
+<h4><%= @event.tickets.count %> Attends</h4><br>
+<br><%= render @event.tickets %>
+</div>
+
+<% if user_signed_in? %>
+<% if(@tickets == 0) %>
+<h3>Ticked Completed</h3>
+<% else %>
+ 		<br><%= render "tickets/form" %>
+<% end %>
+
+<% else %>
+<%= link_to "Please Log In or Register for Attending This Event", new_user_registration_path %><br><br>
+<% end %>
+
+
+</div>
+</div>

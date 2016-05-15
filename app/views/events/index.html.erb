@@ -1,6 +1,14 @@
-<% @events.each do |event| %>
+ <% @events.each do |event| %>
 <div class="event_wrapper">
+	<% if event.conducted_on >= Time.now %>
+	<ul class="nav pull-right">
+	<h2 class="event_sub">Fee Rs. <%= event.ticket_charge.to_d	 %></h2>
+	</ul>
 	<h2 class="title"><%= link_to event.title, event %></h2>
-	<p class="date"><%= event.created_at.strftime("%B, %d, %Y") %></p>
+	
+	<p class="event_sub"> <%= event.event_sub %></p>
+	<p class="date"><%= event.created_at.strftime("%B %d, %Y") %></p>
+	<hr>
+	<% end %>
 </div>
 <% end %>
